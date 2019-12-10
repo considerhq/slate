@@ -74,6 +74,7 @@ export type EditableProps = {
   onDOMBeforeInput?: (event: Event) => void
   placeholder?: string
   readOnly?: boolean
+  autoScrollIntoView?: boolean
   role?: string
   style?: React.CSSProperties
   renderElement?: (props: RenderElementProps) => JSX.Element
@@ -92,6 +93,7 @@ export const Editable = (props: EditableProps) => {
     onDOMBeforeInput: propsOnDOMBeforeInput,
     placeholder,
     readOnly = false,
+    autoScrollIntoView = true,
     renderElement,
     renderLeaf,
     style = {},
@@ -193,8 +195,10 @@ export const Editable = (props: EditableProps) => {
 
     if (newDomRange) {
       domSelection.addRange(newDomRange!)
-      const leafEl = newDomRange.startContainer.parentElement!
-      scrollIntoView(leafEl, { scrollMode: 'if-needed' })
+      if (props.autoScrollIntoView) {
+        const leafEl = newDomRange.startContainer.parentElement!
+        scrollIntoView(leafEl, { scrollMode: 'if-needed' })
+      }
     }
 
     setTimeout(() => {
