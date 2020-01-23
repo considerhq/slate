@@ -1,3 +1,36 @@
+# Consider fork info
+
+This repo is kept in sync with 
+[ianstormtaylor/slate](https://github.com/ianstormtaylor/slate) using 
+[Pull](https://github.com/wei/pull). It is supposed to create PRs in this repo 
+to merge changes from upstream periodically.
+
+New releases are done manually with 
+[gitpkg](https://github.com/ramasilveyra/gitpkg). To make a new release:
+
+1. Make sure gitpkg is installed:
+  ```
+  yarn global add gitpkg
+  ```
+2. Checkout this fork repo, then run:
+  ```
+  yarn
+  yarn build
+  ```
+3. The go to each `package/` folder and run:
+  ```
+  gitpkg publish
+  ```
+4. If the version of the package is the same as a version already uploaded, then 
+   you will have to delete the existing tag first:
+  ```
+  git tag -d <tag-name>
+  git push --delete origin <tag-name>
+  gitpkg publish
+  ```
+5. Make sure to update the `considerhq/main/browser/package.json` so that it 
+   points at the latest tag for each slate package.
+
 <p align="center">
   <a href="#"><img src="./docs/images/banner.png" /></a>
 </p>

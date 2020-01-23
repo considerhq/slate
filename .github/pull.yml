@@ -3,3 +3,7 @@ rules:
   - base: master
     upstream: ianstormtaylor:master
     mergeMethod: rebase
+    assignees:
+      - thallada
+    reviewers:
+      - thallada
