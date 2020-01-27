@@ -20,6 +20,7 @@ Once you've installed Slate, you'll need to import it.
 ```jsx
 // Import React dependencies.
 import React, { useEffect, useMemo, useState } from "react";
+
 // Import the Slate editor factory.
 import { createEditor } from 'slate'
 
