@@ -8,24 +8,21 @@ to merge changes from upstream periodically.
 New releases are done manually with 
 [gitpkg](https://github.com/ramasilveyra/gitpkg). To make a new release:
 
-1. Make sure gitpkg is installed:
+1. Increment the fork version number in the `version` in every `package.json` in 
+   each package under the `package/` folder (e.g. `"version": "0.57.1-fork1"` -> 
+   `"version": "0.57.1-fork2"`).  Commit and push the changes to the master 
+   branch.
+2. Make sure gitpkg is installed:
   ```
   yarn global add gitpkg
   ```
-2. Checkout this fork repo, then run:
+3. Checkout this fork repo, then run:
   ```
   yarn
   yarn build
   ```
-3. The go to each `package/` folder and run:
+4. The go to each `package/` folder and run:
   ```
-  gitpkg publish
-  ```
-4. If the version of the package is the same as a version already uploaded, then 
-   you will have to delete the existing tag first:
-  ```
-  git tag -d <tag-name>
-  git push --delete origin <tag-name>
   gitpkg publish
   ```
 5. Make sure to update the `considerhq/main/browser/package.json` so that it 
