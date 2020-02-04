@@ -275,6 +275,11 @@ export const Editable = (props: EditableProps) => {
             native = false
           }
 
+          const anchorNode = Node.get(editor, selection.anchor.path)
+          if (Text.isText(anchorNode) && anchorNode.text.endsWith('\n')) {
+            native = false
+          }
+
           // and because of the selection moving in `insertText` (create-editor.tx).
           const { anchor } = selection
           const inline = Editor.above(editor, {
