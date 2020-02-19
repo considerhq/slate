@@ -88,6 +88,9 @@ export type EditableProps = {
  * Editable.
  */
 
+const accent = new RegExp('[\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u024F]')
+const matchesAccent = (string: string) => accent.test(string)
+
 export const Editable = (props: EditableProps) => {
   const {
     autoFocus,
@@ -263,6 +266,7 @@ export const Editable = (props: EditableProps) => {
           // for now.
           event.data &&
           event.data.length === 1 &&
+          !matchesAccent(event.data) &&
           // Chrome seems to have issues correctly editing the start of nodes.
           // I see this when there is an inline element, like a link, and you select
           // right after it (the start of the next node).
